@@ -1,0 +1,141 @@
+\documentclass[a4paper,10pt]{paper}
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.4}
+
+\usepackage[utf8]{inputenc}
+\usepackage{subfiles}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{tocloft}
+
+\usepackage[english]{babel}
+\usepackage{float}
+\usepackage{titlesec} 
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries}{}{0pt}{\Huge}
+\usepackage[hidelinks=true]{hyperref}
+\usepackage{tikz,pgfplots}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{changepage}
+\usepackage{url}
+\usepackage{rotating}
+\usepackage{wrapfig}
+
+\definecolor{codeColor}{RGB}{117,117,117}
+\newcommand{\code}[1] {{\color{codeColor}\texttt{#1}}}
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+\renewcommand{\lstlistingname}{Code}
+\usepackage{enumitem}
+\usepackage{pdfpages}
+\usepackage{nameref}
+\usepackage{textcomp}
+
+\usepackage{listings}
+
+\lstdefinelanguage{Golang}%
+  {morekeywords=[1]{package,import,func,type,struct,return,defer,panic,%
+     recover,select,var,const,iota,},%
+   morekeywords=[2]{string,uint,uint8,uint16,uint32,uint64,int,int8,int16,%
+     int32,int64,bool,float32,float64,complex64,complex128,byte,rune,uintptr,%
+     error,interface},%
+   morekeywords=[3]{map,slice,make,new,nil,len,cap,copy,close,true,false,%
+     delete,append,real,imag,complex,chan,},%
+   morekeywords=[4]{for,break,continue,range,go,goto,switch,case,fallthrough,if,%
+     else,default,},%
+   morekeywords=[5]{Println,Printf,Error,Print,},%
+   sensitive=true,%
+   morecomment=[l]{//},%
+   morecomment=[s]{/*}{*/},%
+   morestring=[b]',%
+   morestring=[b]",%
+   morestring=[s]{`}{`},%
+   }
+
+
+\lstset{ % add your own preferences
+    frame=single,
+    basicstyle=\footnotesize,
+    keywordstyle=\color{red},
+    numbers=left,
+    numbersep=5pt,
+    showstringspaces=false, 
+    stringstyle=\color{blue},
+    tabsize=4,
+    language=Golang % this is it !
+}
+\usepackage[style=ieee]{biblatex}
+\addbibresource{ref.bib}
+
+\begin{document}
+
+%prologue
+ % Header and footer styles
+    \pagenumbering{roman}
+    \pagestyle{fancy}
+    \fancyhf{}
+    %\fancyhead[L]{\rightmark}
+    \fancyhead[R]{\thepage}
+    %\rhead{\thepage}
+    %\lhead{\header}
+
+\subfile{prologue/front_page.tex}
+\setcounter{page}{2}
+\subfile{prologue/abstract}
+\newpage
+\subfile{prologue/preface}
+\newpage
+\subfile{prologue/reading_guide}
+\newpage
+\subfile{prologue/table_of_contents}
+\newpage
+\subfile{prologue/listings}
+\newpage
+%\subfile{prologue/glossary}
+%\newpage
+
+%body
+% Header and footer styles
+    \pagenumbering{arabic}
+    \pagestyle{fancy}
+    \fancyhf{}
+    \fancyhead[L]{\leftmark}
+    \fancyhead[R]{\thepage ~ of \pageref{litte}}
+    \setcounter{page}{8}
+    
+\subfile{body/introduction.tex}
+\newpage
+\subfile{body/background.tex}
+\newpage
+\subfile{body/analysis.tex}
+\newpage
+\subfile{body/design.tex}
+\newpage
+\subfile{body/implementation.tex}
+\newpage
+\subfile{body/results.tex}
+\newpage
+\subfile{epilogue/discussion.tex}
+\newpage
+\subfile{epilogue/conclusion.tex}
+\newpage
+
+% Epilogue
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Literature \thepage}
+%\fancyhead[L]{\leftmark}
+\subfile{references.tex}
+\newpage
+
+% Appendix
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Appendix \thepage}
+\subfile{appendix/appendix.tex}
+\end{document}
